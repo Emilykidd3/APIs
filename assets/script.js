@@ -19,4 +19,18 @@ function hideStartScreen() {
     startButton.classList.add("hide")
 }
 
+function getQuestions() {
+    fetch("https://opentdb.com/api.php?amount=10&category=9&difficulty=easy")
+    .then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                console.log(data.results[0])
+            });
+        } else {
+            console.error("Error: "+response.statusText);
+        }
+    })
+}
+getQuestions();
+
 addEventListener("click", startGame);
