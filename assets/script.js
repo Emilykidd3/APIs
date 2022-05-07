@@ -12,6 +12,11 @@ function countdown() {
 
 function startGame(){
     setInterval(countdown, 1000);
+    hideStartScreen();
+}
+
+function hideStartScreen() {
+    startButton.classList.add("hide")
 }
 
 addEventListener("click", startGame);
