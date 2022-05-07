@@ -1,6 +1,7 @@
 var startButton = document.querySelector("#start-button")
 
 var timeLeft = 4;
+var questions = []
 
 function countdown() {
     if (timeLeft > 0){
@@ -13,6 +14,7 @@ function countdown() {
 function startGame(){
     setInterval(countdown, 1000);
     hideStartScreen();
+    console.log(questions)
 }
 
 function hideStartScreen() {
@@ -24,7 +26,9 @@ function getQuestions() {
     .then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                console.log(data.results[0])
+                for (var i = 0; i < data.results.length; i++) {
+                    questions.push(data.results[i])
+                }
             });
         } else {
             console.error("Error: "+response.statusText);
