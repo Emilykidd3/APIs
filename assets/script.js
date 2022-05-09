@@ -1,5 +1,6 @@
 var startButton = document.querySelector("#start-button")
 var questionEl = document.querySelector("#question");
+var timer = document.querySelector("#timer")
 
 var timeLeft = 4;
 var questions = []
@@ -8,6 +9,7 @@ var questionNum = 0;
 function countdown() {
     if (timeLeft > 0){
         timeLeft--
+        timer.textContent=timeLeft
     }
     clearInterval(timeLeft);
     console.log(timeLeft)
