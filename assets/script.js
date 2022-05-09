@@ -1,7 +1,9 @@
 var startButton = document.querySelector("#start-button")
+var questionEl = document.querySelector("#question");
 
 var timeLeft = 4;
 var questions = []
+var questionNum = 0;
 
 function countdown() {
     if (timeLeft > 0){
@@ -14,6 +16,7 @@ function countdown() {
 function startGame(){
     setInterval(countdown, 1000);
     hideStartScreen();
+    showQuestion();
     console.log(questions)
 }
 
@@ -36,5 +39,10 @@ function getQuestions() {
     })
 }
 getQuestions();
+
+function showQuestion() {
+    console.log(questions[0])
+    questionEl.textContent= questions[questionNum].question;
+}
 
 addEventListener("click", startGame);
