@@ -47,4 +47,4 @@ function showQuestion() {
     questionEl.textContent= questions[questionNum].question;
 }
 
-addEventListener("click", startGame);
+startButton.addEventListener("click", startGame);
