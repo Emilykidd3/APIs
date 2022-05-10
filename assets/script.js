@@ -1,6 +1,7 @@
-var startButton = document.querySelector("#start-button")
+var startButton = document.querySelector("#start-button");
 var questionEl = document.querySelector("#question");
-var timer = document.querySelector("#timer")
+var timer = document.querySelector("#timer");
+var answerEl = document.querySelector("#answers")
 
 var timeLeft = 4;
 var questions = []
@@ -12,14 +13,14 @@ function countdown() {
         timer.textContent=timeLeft
     }
     clearInterval(timeLeft);
-    console.log(timeLeft)
+    // console.log(timeLeft)
 }
 
 function startGame(){
     setInterval(countdown, 1000);
     hideStartScreen();
     showQuestion();
-    console.log(questions)
+    // console.log(questions)
 }
 
 function hideStartScreen() {
@@ -34,6 +35,10 @@ function getQuestions() {
                 for (var i = 0; i < data.results.length; i++) {
                     questions.push(data.results[i])
                 }
+                console.log(data.results[0].correct_answer)
+                for (var i = 0; i < data.results[0].incorrect_answers.length; i++){
+                    console.log(data.results[0].incorrect_answers[i])
+                }
             });
         } else {
             console.error("Error: "+response.statusText);
@@ -43,7 +48,6 @@ function getQuestions() {
 getQuestions();
 
 function showQuestion() {
-    console.log(questions[0])
     questionEl.textContent= questions[questionNum].question;
 }
 
