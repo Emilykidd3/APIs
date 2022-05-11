@@ -33,11 +33,13 @@ function getQuestions() {
         if (response.ok) {
             response.json().then(function(data) {
                 for (var i = 0; i < data.results.length; i++) {
-                    questions.push(data.results[i])
-                }
-                console.log(data.results[0].correct_answer)
-                for (var i = 0; i < data.results[0].incorrect_answers.length; i++){
-                    console.log(data.results[0].incorrect_answers[i])
+                    var questionArr = [];
+                    questionArr.push(data.results[i])
+                    questionArr.push(data.results[i].correct_answer)
+                    for (var j = 0; j < data.results[i].incorrect_answers.length; j++){
+                        questionArr.push(data.results[i].incorrect_answers[j])
+                    }
+                    questions.push(questionArr);
                 }
             });
         } else {
@@ -48,7 +50,7 @@ function getQuestions() {
 getQuestions();
 
 function showQuestion() {
-    questionEl.textContent= questions[questionNum].question;
+    questionEl.textContent= questions[questionNum][0].question;
 }
 
 startButton.addEventListener("click", startGame);
