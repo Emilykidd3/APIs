@@ -51,6 +51,11 @@ getQuestions();
 
 function showQuestion() {
     questionEl.textContent= questions[questionNum][0].question;
+    for (var i = 1; i < questions[questionNum].length; i++){
+        var button = document.createElement("button");
+        button.textContent = questions[questionNum][i]
+        answerEl.appendChild(button)
+    }
 }
 
 startButton.addEventListener("click", startGame);
