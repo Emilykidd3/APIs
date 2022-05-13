@@ -13,14 +13,12 @@ function countdown() {
         timer.textContent=timeLeft
     }
     clearInterval(timeLeft);
-    // console.log(timeLeft)
 }
 
 function startGame(){
     setInterval(countdown, 1000);
     hideStartScreen();
     showQuestion();
-    // console.log(questions)
 }
 
 function hideStartScreen() {
@@ -52,10 +50,22 @@ getQuestions();
 function showQuestion() {
     questionEl.textContent= questions[questionNum][0].question;
     for (var i = 1; i < questions[questionNum].length; i++){
+        // mix buttons/ answer?
         var button = document.createElement("button");
         button.textContent = questions[questionNum][i]
         answerEl.appendChild(button)
+
     }
+    answerEl.addEventListener("click", function(e){
+        console.log(e.target.innerText)
+        console.log(questions[questionNum][0].correct_answer)
+        if (e.target.innerText === questions[questionNum][0].correct_answer){
+            console.log("correct!!")
+        } else {
+            console.log("incorrect:(")
+        }
+        // compare answer to correct answer
+    })
 }
 
 startButton.addEventListener("click", startGame);
