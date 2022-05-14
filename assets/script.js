@@ -2,6 +2,7 @@ var startButton = document.querySelector("#start-button");
 var questionEl = document.querySelector("#question");
 var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers")
+var qAndAContainer = document.querySelector("#question-and-answer-container")
 
 var timeLeft = 4;
 var questions = []
@@ -57,12 +58,12 @@ function showQuestion() {
 
     }
     answerEl.addEventListener("click", function(e){
-        console.log(e.target.innerText)
-        console.log(questions[questionNum][0].correct_answer)
+        // console.log(e.target.innerText)
+        // console.log(questions[questionNum][0].correct_answer)
         if (e.target.innerText === questions[questionNum][0].correct_answer){
-            console.log("correct!!")
+            e.target.style.backgroundColor = "green"
         } else {
-            console.log("incorrect:(")
+            e.target.style.backgroundColor = "red"
         }
         // compare answer to correct answer
     })
