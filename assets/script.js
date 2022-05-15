@@ -4,14 +4,17 @@ var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers")
 var qAndAContainer = document.querySelector("#question-and-answer-container")
 
-var timeLeft = 4;
+var timeLeft = 10;
 var questions = []
+console.log(questions)
 var questionNum = 0;
 
 function countdown() {
     if (timeLeft > 0){
         timeLeft--
         timer.textContent=timeLeft
+    } else {
+        questionNum++;
     }
     clearInterval(timeLeft);
 }
@@ -49,24 +52,33 @@ function getQuestions() {
 getQuestions();
 
 function showQuestion() {
+    console.log("showing question")
     questionEl.textContent= questions[questionNum][0].question;
     for (var i = 1; i < questions[questionNum].length; i++){
         // mix buttons/ answer?
         var button = document.createElement("button");
         button.textContent = questions[questionNum][i]
-        answerEl.appendChild(button)
-
+        
+        button.addEventListener("click", function(e){
+            // console.log(e.target.innerText)
+            // console.log(questions[questionNum][0].correct_answer)
+            if (e.target.innerText === questions[questionNum][0].correct_answer){
+                e.target.style.backgroundColor = "green"
+            } else {
+                e.target.style.backgroundColor = "red"
+            }
+            questionNum++;
+            console.log(questionNum)
+            var timer = setInterval(function() {
+                qAndAContainer.textContent= ""
+                questionEl.textContent=""
+                console.log("here")
+                clearInterval(timer)
+                return showQuestion();
+            }, 1000)
+        });
+        answerEl.appendChild(button);
     }
-    answerEl.addEventListener("click", function(e){
-        // console.log(e.target.innerText)
-        // console.log(questions[questionNum][0].correct_answer)
-        if (e.target.innerText === questions[questionNum][0].correct_answer){
-            e.target.style.backgroundColor = "green"
-        } else {
-            e.target.style.backgroundColor = "red"
-        }
-        // compare answer to correct answer
-    })
 }
 
 startButton.addEventListener("click", startGame);
