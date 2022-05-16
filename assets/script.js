@@ -8,6 +8,7 @@ var timeLeft = 5;
 var questions = []
 console.log(questions)
 var questionNum = 0;
+var score = 0;
 
 function countdown() {
     var timeInterval = setInterval(function() {
@@ -15,13 +16,17 @@ function countdown() {
             questionNum++;
             removeOldQuestion();
             showQuestion();
-            clearInterval(timeInterval)
+            clearInterval(timeInterval);
         } else {
             timeLeft-=1
             timer.textContent=timeLeft
             console.log(timeLeft)
         }
     }, 1000)
+}
+
+function resetTime() {
+    timeLeft = 5
 }
 
 function startGame(){
@@ -57,8 +62,8 @@ function getQuestions() {
 getQuestions();
 
 function showQuestion() {
-    console.log("showing question")
-    console.log("question Num = " + questionNum)
+    // console.log("showing question")
+    // console.log("question Num = " + questionNum)
     questionEl.textContent= questions[questionNum][0].question;
     for (var i = 1; i < questions[questionNum].length; i++){
         // mix buttons/ answer?
@@ -70,14 +75,15 @@ function showQuestion() {
             // console.log(questions[questionNum][0].correct_answer)
             if (e.target.innerText === questions[questionNum][0].correct_answer){
                 e.target.style.backgroundColor = "green"
+                score++
+                console.log("score = " + score)
             } else {
                 e.target.style.backgroundColor = "red"
             }
             questionNum++;
-            console.log(questionNum)
+            resetTime();
             var timer = setInterval(function() {
-                qAndAContainer.textContent= ""
-                questionEl.textContent=""
+                removeOldQuestion();
                 clearInterval(timer)
                 return showQuestion();
             }, 1000)
