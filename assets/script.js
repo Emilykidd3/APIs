@@ -4,23 +4,28 @@ var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers")
 var qAndAContainer = document.querySelector("#question-and-answer-container")
 
-var timeLeft = 10;
+var timeLeft = 5;
 var questions = []
 console.log(questions)
 var questionNum = 0;
 
 function countdown() {
-    if (timeLeft > 0){
-        timeLeft--
-        timer.textContent=timeLeft
-    } else {
-        questionNum++;
-    }
-    clearInterval(timeLeft);
+    var timeInterval = setInterval(function() {
+        if (timeLeft === 0){
+            questionNum++;
+            removeOldQuestion();
+            showQuestion();
+            clearInterval(timeInterval)
+        } else {
+            timeLeft-=1
+            timer.textContent=timeLeft
+            console.log(timeLeft)
+        }
+    }, 1000)
 }
 
 function startGame(){
-    setInterval(countdown, 1000);
+    countdown();
     hideStartScreen();
     showQuestion();
 }
@@ -53,6 +58,7 @@ getQuestions();
 
 function showQuestion() {
     console.log("showing question")
+    console.log("question Num = " + questionNum)
     questionEl.textContent= questions[questionNum][0].question;
     for (var i = 1; i < questions[questionNum].length; i++){
         // mix buttons/ answer?
@@ -72,13 +78,17 @@ function showQuestion() {
             var timer = setInterval(function() {
                 qAndAContainer.textContent= ""
                 questionEl.textContent=""
-                console.log("here")
                 clearInterval(timer)
                 return showQuestion();
             }, 1000)
         });
         answerEl.appendChild(button);
     }
+}
+
+function removeOldQuestion() {
+    qAndAContainer.textContent= ""
+    questionEl.textContent=""
 }
 
 startButton.addEventListener("click", startGame);
