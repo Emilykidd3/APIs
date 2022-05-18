@@ -62,8 +62,6 @@ function getQuestions() {
 getQuestions();
 
 function showQuestion() {
-    // console.log("showing question")
-    // console.log("question Num = " + questionNum)
     questionEl.textContent= questions[questionNum][0].question;
     for (var i = 1; i < questions[questionNum].length; i++){
         // mix buttons/ answer?
@@ -71,8 +69,6 @@ function showQuestion() {
         button.textContent = questions[questionNum][i]
         
         button.addEventListener("click", function(e){
-            // console.log(e.target.innerText)
-            // console.log(questions[questionNum][0].correct_answer)
             if (e.target.innerText === questions[questionNum][0].correct_answer){
                 e.target.style.backgroundColor = "green"
                 score++
@@ -85,7 +81,9 @@ function showQuestion() {
             var timer = setInterval(function() {
                 removeOldQuestion();
                 clearInterval(timer)
-                return showQuestion();
+                console.log("show question");
+                showQuestion();
+                return
             }, 1000)
         });
         answerEl.appendChild(button);
@@ -93,8 +91,8 @@ function showQuestion() {
 }
 
 function removeOldQuestion() {
-    qAndAContainer.textContent= ""
     questionEl.textContent=""
+    answerEl.textContent=""
 }
 
 startButton.addEventListener("click", startGame);
