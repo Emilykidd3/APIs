@@ -4,19 +4,21 @@ var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers");
 var qAndAContainer = document.querySelector("#question-and-answer-container");
 
-var timeLeft = 20;
+var timeLeft = 2;
 var questions = [];
 var questionNum = 0;
 var score = 0;
 
 function countdown() {
   var timeInterval = setInterval(function () {
-    if (timeLeft === 0) {
+    if (timeLeft === 0 && questionNum < 10) {
       questionNum++;
       removeOldQuestion();
       showQuestion();
-      clearInterval(timeInterval);
-    } else {
+      resetTime();
+    } else if (questionNum === 10){
+        timer.textContent = `Your score is ${score}/10`;
+      } else {
       timeLeft -= 1;
       timer.textContent = timeLeft;
     }
@@ -24,7 +26,7 @@ function countdown() {
 }
 
 function resetTime() {
-  timeLeft = 20;
+  timeLeft = 2;
 }
 
 function startGame() {
@@ -85,7 +87,7 @@ function showQuestion() {
           showQuestion();
           return;
         }, 1000);
-      });
+    });
       answerEl.appendChild(button);
     }
   }
