@@ -98,4 +98,12 @@ function removeOldQuestion() {
   answerEl.textContent = "";
 }
 
+function shuffleAnswers(){
+    if (arr.length = 4){
+        // shuffle answers
+    } else if (arr.length = 2) {
+        arr = [true, false]
+    }
+}
+
 startButton.addEventListener("click", startGame);
