@@ -4,7 +4,7 @@ var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers");
 var qAndAContainer = document.querySelector("#question-and-answer-container");
 
-var timeLeft = 2;
+var timeLeft = 20;
 var questions = [];
 var questionNum = 0;
 var score = 0;
@@ -26,7 +26,7 @@ function countdown() {
 }
 
 function resetTime() {
-  timeLeft = 2;
+  timeLeft = 20;
 }
 
 function startGame() {
@@ -98,12 +98,21 @@ function removeOldQuestion() {
   answerEl.textContent = "";
 }
 
-function shuffleAnswers(){
+function shuffleAnswers(arr){
     if (arr.length = 4){
         // shuffle answers
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr
     } else if (arr.length = 2) {
+        // set true or false questions to true always being first
         arr = [true, false]
+        return arr
     }
 }
 
+
+console.log(shuffleAnswers([1, 2, 3, 4]))
 startButton.addEventListener("click", startGame);
