@@ -67,10 +67,15 @@ function showQuestion() {
     timer.textContent = `Your score is ${score}/10`;
   } else {
     questionEl.textContent = questions[questionNum][0].question;
-    for (var i = 1; i < questions[questionNum].length; i++) {
-      // mix buttons/ answer?
+    // shuffle arr
+    var arr = questions[questionNum].slice(1);
+    console.log("questionsarr " + questions[questionNum].slice(1))
+    console.log(arr)
+    shuffleAnswers(arr);
+    for (var i = 0; i < questions[questionNum].length-1; i++) {
       var button = document.createElement("button");
-      button.textContent = questions[questionNum][i];
+    //   button.textContent = questions[questionNum][i];
+        button.textContent = arr[i];
 
       button.addEventListener("click", function (e) {
         if (e.target.innerText === questions[questionNum][0].correct_answer) {
@@ -99,20 +104,19 @@ function removeOldQuestion() {
 }
 
 function shuffleAnswers(arr){
-    if (arr.length = 4){
+    if (arr.length === 4){
         // shuffle answers
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
         return arr
-    } else if (arr.length = 2) {
+    } else if (arr.length === 2) {
         // set true or false questions to true always being first
         arr = [true, false]
+        console.log("true or false " +  arr)
         return arr
     }
 }
 
-
-console.log(shuffleAnswers([1, 2, 3, 4]))
 startButton.addEventListener("click", startGame);
