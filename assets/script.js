@@ -69,9 +69,8 @@ function showQuestion() {
     questionEl.textContent = questions[questionNum][0].question;
     // shuffle arr
     var arr = questions[questionNum].slice(1);
-    console.log("questionsarr " + questions[questionNum].slice(1))
-    console.log(arr)
-    shuffleAnswers(arr);
+    arr = shuffleAnswers(arr);
+    console.log("thisis the array!! = " + arr)
     for (var i = 0; i < questions[questionNum].length-1; i++) {
       var button = document.createElement("button");
     //   button.textContent = questions[questionNum][i];
@@ -113,9 +112,7 @@ function shuffleAnswers(arr){
         return arr
     } else if (arr.length === 2) {
         // set true or false questions to true always being first
-        arr = [true, false]
-        console.log("true or false " +  arr)
-        return arr
+        return [true, false];
     }
 }
 
