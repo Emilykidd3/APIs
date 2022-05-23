@@ -5,3 +5,10 @@
 .green {
     background-color: green;
 }
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(214, 151, 151);
+    text-align: center;
+}
+
