@@ -12,3 +12,11 @@ body{
     text-align: center;
 }
 
+.question-and-answer-container {
+    width: 100%;
+}
+
+#button {
+    background-color: white;
+    font-size: xx-large;
+}

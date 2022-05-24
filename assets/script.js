@@ -70,18 +70,20 @@ function showQuestion() {
     // shuffle arr
     var arr = questions[questionNum].slice(1);
     arr = shuffleAnswers(arr);
-    console.log("thisis the array!! = " + arr)
     for (var i = 0; i < questions[questionNum].length-1; i++) {
       var button = document.createElement("button");
+      button.classList.add="button"
     //   button.textContent = questions[questionNum][i];
         button.textContent = arr[i];
 
       button.addEventListener("click", function (e) {
+          console.log(questions[questionNum][0].correct_answer)
         if (e.target.innerText === questions[questionNum][0].correct_answer) {
           e.target.style.backgroundColor = "green";
           score++;
         } else {
           e.target.style.backgroundColor = "red";
+
         }
         questionNum++;
         resetTime();
