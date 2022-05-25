@@ -78,7 +78,7 @@ function showQuestion() {
 
       button.addEventListener("click", function (e) {
           console.log(questions[questionNum][0].correct_answer)
-        if (e.target.innerText === questions[questionNum][0].correct_answer) {
+        if (e.target.innerText === questions[questionNum][0].correct_answer || e.target.innerText === toLowerCase(questions[questionNum][0].correct_answer)) {
           e.target.style.backgroundColor = "green";
           score++;
         } else {
@@ -116,6 +116,11 @@ function shuffleAnswers(arr){
         // set true or false questions to true always being first
         return [true, false];
     }
+}
+
+function toLowerCase(word) {
+    word = word.charAt(0).toLowerCase() + word.slice(1)
+    return word;
 }
 
 startButton.addEventListener("click", startGame);
