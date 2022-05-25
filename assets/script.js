@@ -72,7 +72,6 @@ function showQuestion() {
     arr = shuffleAnswers(arr);
     for (var i = 0; i < questions[questionNum].length-1; i++) {
       var button = document.createElement("button");
-      button.classList.add="button"
     //   button.textContent = questions[questionNum][i];
         button.textContent = arr[i];
 
