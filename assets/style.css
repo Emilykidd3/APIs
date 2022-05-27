@@ -12,17 +12,26 @@ body{
     text-align: center;
 }
 
-.question-and-answer-container {
-    width: 100%;
+#question-and-answer-container, #start-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    width: 40%;
+    margin: auto;
 }
 
 button {
-    display: inline-block;
+    display: flex;
     padding: 0.3em 1.2em;
     margin: 0 0.3em 0.3em 0;
     background-color: rgb(240, 238, 238);
     border-radius: 2em;
+    box-sizing: border-box;
     text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    border: 0;
 }
 
 button:hover {
