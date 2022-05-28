@@ -12,13 +12,11 @@ body{
     text-align: center;
 }
 
-#question-and-answer-container, #start-button{
-    display: flex;
-    align-items: center;
+#answers, #start-button {
+    display: inline-flex;
     justify-content: center;
-    justify-items: center;
-    width: 40%;
     margin: auto;
+    flex-direction: column;
 }
 
 button {
