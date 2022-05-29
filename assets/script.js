@@ -3,6 +3,7 @@ var questionEl = document.querySelector("#question");
 var timer = document.querySelector("#timer");
 var answerEl = document.querySelector("#answers");
 var qAndAContainer = document.querySelector("#question-and-answer-container");
+var scoreDivEl = document.querySelector("#score-div")
 
 var timeLeft = 20;
 var questions = [];
@@ -66,6 +67,7 @@ function showQuestion() {
   if (questionNum === 10) {
     timer.textContent = `Your score is ${score}/10`;
   } else {
+      scoreDivEl.textContent=`${score}/${questionNum}`
     questionEl.textContent = questions[questionNum][0].question;
     // shuffle arr
     var arr = questions[questionNum].slice(1);
