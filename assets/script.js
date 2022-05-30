@@ -65,20 +65,20 @@ getQuestions();
 
 function showQuestion() {
   if (questionNum === 10) {
+    scoreDivEl.textContent="";
     timer.textContent = `Your score is ${score}/10`;
   } else {
-      scoreDivEl.textContent=`${score}/${questionNum}`
+      scoreDivEl.textContent= `score: ${score}`
     questionEl.textContent = questions[questionNum][0].question;
     // shuffle arr
     var arr = questions[questionNum].slice(1);
     arr = shuffleAnswers(arr);
     for (var i = 0; i < questions[questionNum].length-1; i++) {
       var button = document.createElement("button");
-    //   button.textContent = questions[questionNum][i];
         button.textContent = arr[i];
 
       button.addEventListener("click", function (e) {
-          console.log(questions[questionNum][0].correct_answer)
+        //   console.log(questions[questionNum][0].correct_answer)
         if (e.target.innerText === questions[questionNum][0].correct_answer || e.target.innerText === toLowerCase(questions[questionNum][0].correct_answer)) {
           e.target.style.backgroundColor = "green";
           score++;
